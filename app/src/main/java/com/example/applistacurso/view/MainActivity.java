@@ -4,6 +4,8 @@ package com.example.applistacurso.view;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.applistacurso.R;
 import com.example.applistacurso.model.Pessoa;
@@ -16,6 +18,16 @@ public class MainActivity extends AppCompatActivity {
     Pessoa outrapessoa;
     String dadosPessoa;
     String dadosOutraPessoa;
+
+    EditText edit_primeiroNome;
+    EditText edit_SobrenomeAluno;
+    EditText editNomeCurso;
+    EditText editTelefoneContato;
+
+    Button btnLimpar;
+    Button btnSalvar;
+    Button btnFinalizar;
+
 
 
 
@@ -37,6 +49,21 @@ public class MainActivity extends AppCompatActivity {
          outrapessoa.setSobreNome("Silva");
          outrapessoa.setCursoDesejado("Java");
          outrapessoa.setTelefoneContato("11-32020202");
+
+        edit_primeiroNome = findViewById(R.id.edit_primeiroNome);
+        edit_SobrenomeAluno = findViewById(R.id.edit_SobrenomeAluno);
+        editNomeCurso = findViewById(R.id.editNomeCurso);
+        editTelefoneContato = findViewById(R.id.editTelefoneContato);
+
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
+
+
+        edit_primeiroNome.setText(pessoa.getPrimeiroNome());
+        edit_SobrenomeAluno.setText(pessoa.getSobreNome());
+        editNomeCurso.setText(pessoa.getCursoDesejado());
+        editTelefoneContato.setText(pessoa.getTelefoneContato());
 
 
         dadosPessoa = "Primeiro nome: ";
