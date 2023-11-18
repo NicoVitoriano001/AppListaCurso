@@ -7,9 +7,15 @@ import com.example.applistacurso.R;
 import com.example.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
-    Pessoa pessoa;
-    Pessoa outrapessoa; // outro objeto. tem que instanciar esse objeto, na MainActivty
+
+    // outro objeto. tem que instanciar esse objeto, na MainActivty
     //Classe-Pessoa objeto-pessoa
+    Pessoa pessoa;
+    Pessoa outrapessoa;
+    String dadosPessoa;
+    String dadosOutraPessoa;
+
+
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,32 @@ public class MainActivity extends AppCompatActivity {
          outrapessoa.setSobreNome("Silva");
          outrapessoa.setCursoDesejado("Java");
          outrapessoa.setTelefoneContato("11-32020202");
-           int parada = 0;
+
+
+        dadosPessoa = "Primeiro nome: ";
+        dadosPessoa += pessoa.getPrimeiroNome();
+        dadosPessoa += " Sobrenome: ";
+        dadosPessoa += pessoa.getSobreNome();
+        dadosPessoa += " Curso Desejado: ";
+        dadosPessoa += pessoa.getCursoDesejado();
+        dadosPessoa += " Telefone de Contato: ";
+        dadosPessoa += pessoa.getTelefoneContato();
+
+
+         dadosOutraPessoa = "Primeiro nome: ";
+         dadosOutraPessoa += outrapessoa.getPrimeiroNome();
+         dadosOutraPessoa += " Sobrenome: ";
+         dadosOutraPessoa += outrapessoa.getSobreNome();
+         dadosOutraPessoa += " Curso Desejado: ";
+         dadosOutraPessoa += outrapessoa.getCursoDesejado();
+         dadosOutraPessoa += " Telefone de Contato: ";
+         dadosOutraPessoa += outrapessoa.getTelefoneContato();
+
+
+         int parada = 0;
+
+
+
+
     }
 }
