@@ -3,6 +3,8 @@ package com.example.applistacurso.view;
 //import são as classes necessárias
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.example.applistacurso.R;
 import com.example.applistacurso.model.Pessoa;
 
@@ -57,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
          dadosOutraPessoa += outrapessoa.getTelefoneContato();
 
 
-         int parada = 0;
-
+//visualizar pelo tostring
+        Log.i("POOAndroid", pessoa.toString());
+        Log.i("POOAndroid", outrapessoa.toString());
 
 
 
