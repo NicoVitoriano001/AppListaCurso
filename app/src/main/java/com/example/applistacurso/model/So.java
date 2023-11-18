@@ -1,4 +1,9 @@
 package com.example.applistacurso.model;
 
-public class Curso {
+public class So {
+
+    public So(){
+
+    }
+
 }
