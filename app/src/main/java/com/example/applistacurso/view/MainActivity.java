@@ -4,24 +4,31 @@ package com.example.applistacurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.applistacurso.Controller.CursoController;
 import com.example.applistacurso.Controller.PessoaController;
 import com.example.applistacurso.R;
 import com.example.applistacurso.model.Pessoa;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //outro objeto. tem que instanciar esse objeto, na MainActivty
     //Classe-Pessoa objeto-pessoa
 
     PessoaController controller;
+    CursoController cursoController;
     Pessoa pessoa;
+    List<String> nomesDosCuros;
+
     Pessoa outrapessoa;
     String dadosPessoa;
     String dadosOutraPessoa;
@@ -29,25 +36,25 @@ public class MainActivity extends AppCompatActivity {
     EditText edit_SobrenomeAluno;
     EditText editNomeCurso;
     EditText editTelefoneContato;
-
     Button btnLimpar;
     Button btnSalvar;
     Button btnFinalizar;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        controller = new PessoaController(MainActivity.this);
-        controller.toString();
-
-        //criou os objetos (estanciou os objetos)
+        setContentView(R.layout.activity_spinner);
+//criou os objetos (estanciou os objetos)
         //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
       /*pessoa.setPrimeiroNome("Nico");
         pessoa.setSobreNome("Vitor");
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("85-11002020203");*/
+
+        controller = new PessoaController(MainActivity.this);
+        controller.toString();
+
         pessoa = new Pessoa();
         controller.buscar(pessoa);
 
@@ -65,6 +72,18 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
+        //Adapter        //Layout        //Injetar o Adapter ao Spinner > Lista será gerada com nome dos cursos
+        cursoController = new CursoController();
+        nomesDosCuros = cursoController.dadosParaSpinner();
+        spinner = findViewById(R.id.spinner);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1,
+                cursoController.dadosParaSpinner());
+
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+
+        spinner.setAdapter(adapter);
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 editTelefoneContato.setText("");
 
                 controller.limpar();
-
 
             }
         });
