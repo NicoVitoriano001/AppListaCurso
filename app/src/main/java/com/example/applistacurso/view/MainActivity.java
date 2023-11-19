@@ -19,9 +19,7 @@ import com.example.applistacurso.model.Pessoa;
 public class MainActivity extends AppCompatActivity {
     //outro objeto. tem que instanciar esse objeto, na MainActivty
     //Classe-Pessoa objeto-pessoa
-    SharedPreferences preferences;
-    SharedPreferences.Editor listaVip;//ficou como público
-    public static final String NOME_PREFERENCES = "pref_listavip";
+
     PessoaController controller;
     Pessoa pessoa;
     Pessoa outrapessoa;
@@ -41,11 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        listaVip = preferences.edit();//após editar como abaixo descrito, foi no btnLimpar
-        //SharedPreferences.Editor listaVip = preferences.edit(); //deixo com público tirou ShadredPrefernces.Editor
-
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
         controller.toString();
 
         //criou os objetos (estanciou os objetos)
@@ -55,10 +49,7 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("85-11002020203");*/
         pessoa = new Pessoa();
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome", ""));
-        pessoa.setSobreNome(preferences.getString("sobreNome", ""));
-        pessoa.setCursoDesejado(preferences.getString("cursoDesejado", ""));
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato", ""));
+        controller.buscar(pessoa);
 
         edit_primeiroNome = findViewById(R.id.edit_primeiroNome);
         edit_SobrenomeAluno = findViewById(R.id.edit_SobrenomeAluno);
@@ -82,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 editNomeCurso.setText("");
                 editTelefoneContato.setText("");
 
-                listaVip.clear();
-                listaVip.apply();
+                controller.limpar();
+
 
             }
         });
@@ -106,14 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Salvo " + pessoa.toString(), Toast.LENGTH_LONG).show();
                 //1 parte - criação do método inverso. Criou aqui controller.salvar();, para poder ser preenchido automático na Class PessoaController
                 //2 parte -  ao criar o métido salvar na Class PessoaController, ele está fazio, colocar  controller.salvar(pessoa); e permitir Add
-
-                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
-                listaVip.putString("sobreNome", pessoa.getSobreNome());
-                listaVip.putString("cursoDesejado", pessoa.getCursoDesejado());
-                listaVip.putString("telefoneContato", pessoa.getTelefoneContato());
-
-                //salvar os dados
-                listaVip.apply();
 
                 controller.salvar(pessoa);
 
