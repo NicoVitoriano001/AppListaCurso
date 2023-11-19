@@ -4,6 +4,7 @@ package com.example.applistacurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,13 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.applistacurso.Controller.PessoaController;
 import com.example.applistacurso.R;
 import com.example.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
-
-    // outro objeto. tem que instanciar esse objeto, na MainActivty
+    //outro objeto. tem que instanciar esse objeto, na MainActivty
     //Classe-Pessoa objeto-pessoa
+    SharedPreferences preferences;
+    public static final String NOME_PREFERENCES = "pref_listavip";
+    PessoaController controller;
     Pessoa pessoa;
     Pessoa outrapessoa;
     String dadosPessoa;
@@ -38,6 +42,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
+        SharedPreferences.Editor listaVip = preferences.edit();
+
+        controller = new PessoaController();
+        controller.toString();
+
+        //criou os objetos (estanciou os objetos)
+        pessoa = new Pessoa();
+        //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
+        pessoa.setPrimeiroNome("Nico");
+        pessoa.setSobreNome("Vitor");
+        pessoa.setCursoDesejado("Android");
+        pessoa.setTelefoneContato("85-11002020203");
+
+
         //criou os objetos (estanciou os objetos)
         pessoa = new Pessoa();
         //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
@@ -45,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
          pessoa.setSobreNome("Vitor");
          pessoa.setCursoDesejado("Android");
          pessoa.setTelefoneContato("85-11002020203");*/
+
         outrapessoa = new Pessoa();
         outrapessoa.setPrimeiroNome("Juazrez");
         outrapessoa.setSobreNome("Silva");
@@ -89,7 +109,23 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setSobreNome(edit_SobrenomeAluno.getText().toString());
                 pessoa.setCursoDesejado(editNomeCurso.getText().toString());
                 pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
+
                 Toast.makeText(MainActivity.this, "Salvo " + pessoa.toString(), Toast.LENGTH_LONG).show();
+                //1 parte - criação do método inverso. Criou aqui controller.salvar();, para poder ser preenchido automático na Class PessoaController
+                //2 parte -  ao criar o métido salvar na Class PessoaController, ele está fazio, colocar  controller.salvar(pessoa); e permitir Add
+
+                listaVip.putString("primeiroNome", pessoa.getPrimeiroNome());
+                listaVip.putString("sobreNome", pessoa.getSobreNome());
+                listaVip.putString("cursoDesejado", pessoa.getCursoDesejado());
+                listaVip.putString("telefoneContato", pessoa.getTelefoneContato());
+
+                //salvar os dados
+                listaVip.apply();
+
+                controller.salvar(pessoa);
+
+                Toast.makeText(MainActivity.this, "Salvo " + pessoa.toString(), Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -101,6 +137,9 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa += pessoa.getCursoDesejado();
         dadosPessoa += " Telefone de Contato: ";
         dadosPessoa += pessoa.getTelefoneContato();
+
+
+
 
         dadosOutraPessoa = "Primeiro nome: ";
         dadosOutraPessoa += outrapessoa.getPrimeiroNome();
@@ -115,5 +154,6 @@ public class MainActivity extends AppCompatActivity {
 //visualizar pelo tostring
         Log.i("POOAndroid", pessoa.toString());
         Log.i("POOAndroid", outrapessoa.toString());
+
     }
 }
