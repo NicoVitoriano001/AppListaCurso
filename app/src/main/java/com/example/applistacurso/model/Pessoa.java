@@ -15,8 +15,6 @@ public class Pessoa {
     //construtor público, criou a classe pessoa
     public Pessoa(){}
 
-
-
     //Métodos de acesso  - Getts and Setts //botao direito, generate, getts and setts, selecionar tudo
     public String getPrimeiroNome() {
         return primeiroNome;

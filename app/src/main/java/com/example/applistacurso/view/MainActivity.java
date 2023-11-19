@@ -49,31 +49,29 @@ public class MainActivity extends AppCompatActivity {
 
         //criou os objetos (estanciou os objetos)
         //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
-        pessoa = new Pessoa();
-        pessoa.setPrimeiroNome("Nico");
+      /*pessoa.setPrimeiroNome("Nico");
         pessoa.setSobreNome("Vitor");
         pessoa.setCursoDesejado("Android");
-        pessoa.setTelefoneContato("85-11002020203");
-
-        outrapessoa = new Pessoa();
-        outrapessoa.setPrimeiroNome("Juazrez");
-        outrapessoa.setSobreNome("Silva");
-        outrapessoa.setCursoDesejado("Java");
-        outrapessoa.setTelefoneContato("11-32020202");
+        pessoa.setTelefoneContato("85-11002020203");*/
+        pessoa = new Pessoa();
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome", ""));
+        pessoa.setSobreNome(preferences.getString("sobreNome", ""));
+        pessoa.setCursoDesejado(preferences.getString("cursoDesejado", ""));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato", ""));
 
         edit_primeiroNome = findViewById(R.id.edit_primeiroNome);
         edit_SobrenomeAluno = findViewById(R.id.edit_SobrenomeAluno);
         editNomeCurso = findViewById(R.id.editNomeCurso);
         editTelefoneContato = findViewById(R.id.editTelefoneContato);
 
-        btnLimpar = findViewById(R.id.btnLimpar);
-        btnSalvar = findViewById(R.id.btnSalvar);
-        btnFinalizar = findViewById(R.id.btnFinalizar);
-
         edit_primeiroNome.setText(pessoa.getPrimeiroNome());
         edit_SobrenomeAluno.setText(pessoa.getSobreNome());
         editNomeCurso.setText(pessoa.getCursoDesejado());
         editTelefoneContato.setText(pessoa.getTelefoneContato());
+
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,12 +112,12 @@ public class MainActivity extends AppCompatActivity {
 
                 controller.salvar(pessoa);
 
-                Toast.makeText(MainActivity.this, "Salvo " + pessoa.toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, "Salvo " + pessoa.toString(), Toast.LENGTH_LONG).show();
 
             }
         });
 
-        dadosPessoa = "Primeiro nome: ";
+        /*dadosPessoa = "Primeiro nome: ";
         dadosPessoa += pessoa.getPrimeiroNome();
         dadosPessoa += " Sobrenome: ";
         dadosPessoa += pessoa.getSobreNome();
@@ -135,11 +133,11 @@ public class MainActivity extends AppCompatActivity {
         dadosOutraPessoa += " Curso Desejado: ";
         dadosOutraPessoa += outrapessoa.getCursoDesejado();
         dadosOutraPessoa += " Telefone de Contato: ";
-        dadosOutraPessoa += outrapessoa.getTelefoneContato();
+        dadosOutraPessoa += outrapessoa.getTelefoneContato();*/
 
 //visualizar pelo tostring
         Log.i("POOAndroid", pessoa.toString());
-        Log.i("POOAndroid", outrapessoa.toString());
+    //    Log.i("POOAndroid", outrapessoa.toString());
 
     }
 }
