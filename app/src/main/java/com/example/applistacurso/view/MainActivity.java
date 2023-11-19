@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnSalvar;
     Button btnFinalizar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,21 +48,12 @@ public class MainActivity extends AppCompatActivity {
         controller.toString();
 
         //criou os objetos (estanciou os objetos)
-        pessoa = new Pessoa();
         //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
+        pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Nico");
         pessoa.setSobreNome("Vitor");
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("85-11002020203");
-
-
-        //criou os objetos (estanciou os objetos)
-        pessoa = new Pessoa();
-        //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
-        /* pessoa.setPrimeiroNome("Nico");
-         pessoa.setSobreNome("Vitor");
-         pessoa.setCursoDesejado("Android");
-         pessoa.setTelefoneContato("85-11002020203");*/
 
         outrapessoa = new Pessoa();
         outrapessoa.setPrimeiroNome("Juazrez");
@@ -138,9 +128,6 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa += " Telefone de Contato: ";
         dadosPessoa += pessoa.getTelefoneContato();
 
-
-
-
         dadosOutraPessoa = "Primeiro nome: ";
         dadosOutraPessoa += outrapessoa.getPrimeiroNome();
         dadosOutraPessoa += " Sobrenome: ";
@@ -149,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
         dadosOutraPessoa += outrapessoa.getCursoDesejado();
         dadosOutraPessoa += " Telefone de Contato: ";
         dadosOutraPessoa += outrapessoa.getTelefoneContato();
-
 
 //visualizar pelo tostring
         Log.i("POOAndroid", pessoa.toString());
