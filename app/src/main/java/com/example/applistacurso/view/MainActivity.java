@@ -99,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         dadosPessoa = "Primeiro nome: ";
         dadosPessoa += pessoa.getPrimeiroNome();
         dadosPessoa += " Sobrenome: ";
