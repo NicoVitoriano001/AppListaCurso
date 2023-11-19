@@ -134,6 +134,5 @@ public class MainActivity extends AppCompatActivity {
         Log.i("POOAndroid", pessoa.toString());
         Log.i("POOAndroid", outrapessoa.toString());
 
-
     }
 }
