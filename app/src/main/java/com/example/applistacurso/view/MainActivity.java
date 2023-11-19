@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("85-11002020203");
 
+
+        //criou os objetos (estanciou os objetos)
+        pessoa = new Pessoa();
+        //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
+        /* pessoa.setPrimeiroNome("Nico");
+         pessoa.setSobreNome("Vitor");
+         pessoa.setCursoDesejado("Android");
+         pessoa.setTelefoneContato("85-11002020203");*/
+
         outrapessoa = new Pessoa();
         outrapessoa.setPrimeiroNome("Juazrez");
         outrapessoa.setSobreNome("Silva");
@@ -71,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
-
         edit_primeiroNome.setText(pessoa.getPrimeiroNome());
         edit_SobrenomeAluno.setText(pessoa.getSobreNome());
         editNomeCurso.setText(pessoa.getCursoDesejado());
@@ -84,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 edit_SobrenomeAluno.setText("");
                 editNomeCurso.setText("");
                 editTelefoneContato.setText("");
-
             }
         });
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
@@ -115,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
                 //salvar os dados
                 listaVip.apply();
 
-
                 controller.salvar(pessoa);
+
+                Toast.makeText(MainActivity.this, "Salvo " + pessoa.toString(), Toast.LENGTH_LONG).show();
 
             }
         });
-
 
         dadosPessoa = "Primeiro nome: ";
         dadosPessoa += pessoa.getPrimeiroNome();
@@ -130,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa += pessoa.getCursoDesejado();
         dadosPessoa += " Telefone de Contato: ";
         dadosPessoa += pessoa.getTelefoneContato();
+
+
 
 
         dadosOutraPessoa = "Primeiro nome: ";
