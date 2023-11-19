@@ -20,13 +20,13 @@ public class MainActivity extends AppCompatActivity {
     //outro objeto. tem que instanciar esse objeto, na MainActivty
     //Classe-Pessoa objeto-pessoa
     SharedPreferences preferences;
+    SharedPreferences.Editor listaVip;//ficou como público
     public static final String NOME_PREFERENCES = "pref_listavip";
     PessoaController controller;
     Pessoa pessoa;
     Pessoa outrapessoa;
     String dadosPessoa;
     String dadosOutraPessoa;
-
     EditText edit_primeiroNome;
     EditText edit_SobrenomeAluno;
     EditText editNomeCurso;
@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        SharedPreferences.Editor listaVip = preferences.edit();
+        listaVip = preferences.edit();//após editar como abaixo descrito, foi no btnLimpar
+        //SharedPreferences.Editor listaVip = preferences.edit(); //deixo com público tirou ShadredPrefernces.Editor
 
         controller = new PessoaController();
         controller.toString();
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                 edit_SobrenomeAluno.setText("");
                 editNomeCurso.setText("");
                 editTelefoneContato.setText("");
+
+                listaVip.clear();
+                listaVip.apply();
+
             }
         });
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
