@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnFinalizar;
 
 
-
-
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
