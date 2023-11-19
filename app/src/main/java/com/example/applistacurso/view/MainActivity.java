@@ -10,18 +10,26 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
+import com.example.applistacurso.Controller.CursoController;
 import com.example.applistacurso.Controller.PessoaController;
 import com.example.applistacurso.R;
+import com.example.applistacurso.model.Curso;
 import com.example.applistacurso.model.Pessoa;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //outro objeto. tem que instanciar esse objeto, na MainActivty
     //Classe-Pessoa objeto-pessoa
 
     PessoaController controller;
+    CursoController cursoController;
     Pessoa pessoa;
+    List<Curso> listaDeCursos;
+
     Pessoa outrapessoa;
     String dadosPessoa;
     String dadosOutraPessoa;
@@ -38,16 +46,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        controller = new PessoaController(MainActivity.this);
-        controller.toString();
-
-        //criou os objetos (estanciou os objetos)
+//criou os objetos (estanciou os objetos)
         //atribuir dados, valores ao objetos, conforme Pessoa (generate > getts and setts)
       /*pessoa.setPrimeiroNome("Nico");
         pessoa.setSobreNome("Vitor");
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("85-11002020203");*/
+
+        controller = new PessoaController(MainActivity.this);
+        controller.toString();
+
+        cursoController = new CursoController();
+        listaDeCursos = cursoController.getListaDeCursos();
+
         pessoa = new Pessoa();
         controller.buscar(pessoa);
 
